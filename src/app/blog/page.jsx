@@ -3,51 +3,41 @@ import styles from "./page.module.css";
 import Link from "next/link";
 import Image from "next/image";
 
-const Blog = () => {
+async function getData() {
+  const res = await fetch("https://jsonplaceholder.typicode.com/posts", {
+    cache: "no-cache",
+  });
+
+  if (!res.ok) {
+    throw new Error("Failed to fetch data");
+  }
+
+  return res.json();
+}
+
+const Blog = async () => {
+  const data = await getData();
+
   return (
     <div className={styles.mainContainer}>
-      <Link href="/blog/testId" className={styles.container}>
-        <div className={styles.imgContainer}>
-          <Image
-            width={400}
-            height={250}
-            src="/websites.jpg"
-            alt="Image"
-            // fill={true}
-            className={styles.img}
-          ></Image>
-        </div>
-        <div className={styles.content}>
-          <h1 className={styles.title}>Test</h1>
-          <p className={styles.desc}>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ratione
-            delectus saepe aliquam enim tenetur praesentium perspiciatis
-            explicabo earum quaerat! Veritatis adipisci voluptatibus impedit
-            voluptas rerum reiciendis iure sunt doloribus et.
-          </p>
-        </div>
-      </Link>
-      <Link href="" className={styles.container}>
-        <div className={styles.imgContainer}>
-          <Image
-            width={400}
-            height={250}
-            src="/websites.jpg"
-            // fill={true}
-            alt="Image"
-            className={styles.img}
-          ></Image>
-        </div>
-        <div className={styles.content}>
-          <h1 className={styles.title}>Test</h1>
-          <p className={styles.desc}>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ratione
-            delectus saepe aliquam enim tenetur praesentium perspiciatis
-            explicabo earum quaerat! Veritatis adipisci voluptatibus impedit
-            voluptas rerum reiciendis iure sunt doloribus et.
-          </p>
-        </div>
-      </Link>
+      {data.map((item) => (
+        <Link href="/blog/testId" className={styles.container} key={item.id}>
+          <div className={styles.imgContainer}>
+            <Image
+              width={400}
+              height={250}
+              src="/websites.jpg"
+              alt="Image"
+              // fill={true}
+              className={styles.img}
+            ></Image>
+          </div>
+          <div className={styles.content}>
+            <h1 className={styles.title}>{item.title}</h1>
+            <p className={styles.desc}>{item.body}</p>
+          </div>
+        </Link>
+      ))}
     </div>
   );
 };
