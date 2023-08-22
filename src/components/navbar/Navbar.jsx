@@ -2,6 +2,7 @@
 import Link from "next/link";
 import React from "react";
 import styles from "./page.module.css";
+import DarkMode from "../darkmode/DarkMode";
 const links = [
   {
     id: 1,
@@ -42,6 +43,7 @@ const Navbar = () => {
         PhdBui
       </Link>
       <div className={styles.links}>
+        <DarkMode></DarkMode>
         {links.map((link) => (
           <Link key={link.id} href={link.url}>
             {link.title}
