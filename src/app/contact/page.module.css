@@ -1,3 +1,53 @@
 .container {
   /* background-color: brown; */
 }
+
+.title {
+  font-size: 60px;
+  margin-top: 30px;
+  margin-bottom: 50px;
+  text-align: center;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  gap: 100px;
+}
+
+.imgContainer {
+  flex: 1;
+  height: 500px;
+  position: relative;
+}
+
+.img {
+  object-fit: contain;
+  animation: move 3s infinite ease alternate;
+}
+
+@keyframes move {
+  from {
+    transform: translateY(-15px);
+  }
+  to {
+    transform: translateY(0) scale(1.03);
+  }
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  flex: 1;
+}
+
+.input,
+.textArea {
+  padding: 20px;
+  background-color: transparent;
+  border: 3px solid #bbb;
+  outline: none;
+  color: #bbb;
+  font-size: 20px;
+  font-weight: bold;
+}
