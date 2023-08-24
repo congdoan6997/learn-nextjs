@@ -3,7 +3,10 @@ import styles from "./page.module.css";
 import ImgContact from "public/contact.png";
 import Image from "next/image";
 import Button from "@/components/botton/Button";
-
+export const metadata = {
+  title: "My contact",
+  description: "This is my contact info",
+};
 const Contact = () => {
   return (
     <div className={styles.container}>

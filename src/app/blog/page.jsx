@@ -30,7 +30,7 @@ const Blog = async () => {
             <Image
               width={400}
               height={250}
-              src="/websites.jpg"
+              src={item.img}
               alt="Image"
               // fill={true}
               className={styles.img}
