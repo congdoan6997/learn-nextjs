@@ -4,7 +4,7 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 
 async function getData(id) {
-  const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, {
+  const res = await fetch(`http://localhost:3000/api/posts/${id}`, {
     cache: "no-cache",
   });
 
@@ -22,7 +22,7 @@ const BlogPost = async ({ params }) => {
       <div className={styles.top}>
         <div className={styles.info}>
           <h1 className={styles.title}>{data.title}</h1>
-          <p className={styles.desc}>{data.body}</p>
+          <p className={styles.desc}>{data.desc}</p>
           <div className={styles.author}>
             <Image
               src="/websites.jpg"
@@ -31,45 +31,15 @@ const BlogPost = async ({ params }) => {
               height={40}
               className={styles.avatar}
             />
-            <span className={styles.username}>Test</span>
+            <span className={styles.username}>{data.username}</span>
           </div>
         </div>
         <div className={styles.imageContainer}>
-          <Image
-            src="/websites.jpg"
-            alt=""
-            fill={true}
-            className={styles.image}
-          />
+          <Image src={data.img} alt="" fill={true} className={styles.image} />
         </div>
       </div>
       <div className={styles.content}>
-        <p className={styles.text}>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eligendi
-          molestias qui incidunt magni eum quos quam expedita exercitationem
-          laudantium veritatis eveniet saepe, voluptatibus nihil porro assumenda
-          obcaecati, quas itaque cupiditate? Lorem ipsum dolor sit amet
-          consectetur adipisicing elit. Accusantium modi ipsum amet labore, quo
-          recusandae veniam neque officiis pariatur commodi quasi non mollitia
-          totam? Facilis delectus accusamus saepe magnam. Ullam? Lorem ipsum,
-          dolor sit amet consectetur adipisicing elit. Perspiciatis, veritatis
-          sint quod natus tenetur sunt vitae, iste quia magni suscipit ex labore
-          placeat voluptatum deleniti repellat quo facere? Perferendis, laborum.
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim quam
-          placeat non dignissimos, eveniet ea sequi quod velit earum? Explicabo
-          fugit fugiat praesentium neque, sequi rem labore iure quasi
-          repudiandae.
-          <br />
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officia
-          neque aperiam corporis, quos nemo quo nulla odio veniam vel qui dolor
-          voluptate sapiente commodi adipisci consequuntur a quidem voluptatum
-          facere.
-          <br />
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam,
-          doloremque excepturi libero iste iure eum earum quas vero quia ex
-          assumenda sapiente perferendis voluptas doloribus accusantium? Ea
-          distinctio error illo.
-        </p>
+        <p className={styles.text}>{data.content}</p>
       </div>
     </div>
   );
